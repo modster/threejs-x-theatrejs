@@ -2,14 +2,20 @@ import './style.css'
 import * as THREE from 'three'
 
 import studio from '@theatre/studio'
+// Vite
+
 import {getProject, types} from '@theatre/core'
 import state from './state.json'
 
 /**
  * Theatre.js */
 
-// Initialize the studio
-studio.initialize()
+// Initialize the studio only in dev environment, not in production so vit won't bundle it.
+if (import.meta.env.DEV) {
+  studio.initialize()
+  // uncomment if using the r3f extension:
+  // studio.extend(extension)
+}
 
 // Create a project for the animation
 const project = getProject('THREE.js x Theatre.js', {state})
